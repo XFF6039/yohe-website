@@ -52,7 +52,9 @@
     }
     .badge:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.30); }
     .badge img { height: 20px; vertical-align: -4px; margin-right: 8px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; padding: 12px 0 56px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 12px 0 56px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
     .card {
       background: linear-gradient(140deg, #3E7DE0 0%, #3367D6 55%, #2B5EC7 100%);
       border-radius: 18px; padding: 24px;
