@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yohe Aura — 云晞心流</title>
+  <meta name="description" content="Yohe Aura (云晞心流) — a card-based self-exploration and daily guidance app. Discover daily fortune, tarot readings, personality insights, and warm AI companionship." />
+  <style>
+    :root {
+      --bg1: #F7F1EA;
+      --bg2: #EFE8E0;
+      --bg3: #EAE3EC;
+      --ink: #2c2230;
+      --muted: #7a6f82;
+      --accent: #aa4822;
+      --accent2: #462c0e;
+      --card: rgba(255,255,255,0.55);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 42%, var(--bg3) 100%);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    header { padding: 48px 0 24px; text-align: center; }
+    .logo {
+      width: 84px; height: 84px; margin: 0 auto 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #aa4822, #462c0e);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px; box-shadow: 0 12px 30px rgba(70,44,14,0.25);
+    }
+    h1 {
+      font-size: 42px; letter-spacing: 1px; font-weight: 700;
+      background: linear-gradient(135deg, #462c0e, #aa4822);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .sub { color: var(--muted); font-size: 18px; margin-top: 8px; }
+    .sub .cn { color: var(--ink); }
+    .hero { text-align: center; padding: 24px 0 40px; }
+    .hero p { max-width: 620px; margin: 0 auto 28px; color: #4a4052; font-size: 17px; }
+    .badge {
+      display: inline-block; padding: 14px 34px; border-radius: 999px;
+      background: #2c2230; color: #fff; text-decoration: none; font-weight: 600; font-size: 17px;
+      box-shadow: 0 10px 24px rgba(44,34,48,0.3); transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .badge:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(44,34,48,0.38); }
+    .badge img { height: 20px; vertical-align: -4px; margin-right: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; padding: 12px 0 56px; }
+    .card {
+      background: var(--card); border-radius: 18px; padding: 24px;
+      backdrop-filter: blur(8px); box-shadow: 0 6px 18px rgba(70,44,14,0.08);
+    }
+    .card .ic { font-size: 28px; }
+    .card h3 { margin: 10px 0 6px; font-size: 19px; }
+    .card p { color: var(--muted); font-size: 14.5px; }
+    footer { text-align: center; padding: 32px 0 48px; color: var(--muted); font-size: 13px; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🔮</div>
+    <h1>Yohe Aura</h1>
+    <div class="sub"><span class="cn">云晞心流</span> · Card-guided self-exploration &amp; daily guidance</div>
+  </header>
+
+  <section class="hero">
+    <p>
+      Draw a card each day for gentle guidance, explore classic spreads for deeper insight,
+      discover your tarot personality archetype, and find a warm companion in Yohe.
+      A soft, private space for self-awareness and reflection.
+    </p>
+    <a class="badge" href="https://play.google.com/store/apps/details?id=com.yohe.tarot" target="_blank" rel="noopener">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M3.6 1.8L13.7 12 3.6 22.2c-.4-.3-.6-.7-.6-1.2V3c0-.5.2-.9.6-1.2zM17.1 8.5l3.9 2.2c.8.5.8 1.6 0 2.1l-3.9 2.2-3.1-3.1 3.1-3.4zM15.1 10.5L5 20.6c-.2.2-.5.3-.7.3l10.8-10.4zM5 3.4c.2 0 .5.1.7.3l10.1 10.1L5 3.4z'/%3E%3C/svg%3E" alt="" />
+      Get it on Google Play
+    </a>
+  </section>
+
+  <section class="grid">
+    <div class="card"><div class="ic">🌅</div><h3>Daily Fortune</h3><p>Draw one card a day for a personalized, season-aware reading and gentle action guide.</p></div>
+    <div class="card"><div class="ic">🃏</div><h3>Classic Spreads</h3><p>Single, three-card, Celtic Cross, relationship and more — with AI-powered interpretation.</p></div>
+    <div class="card"><div class="ic">🧭</div><h3>Personality Archetype</h3><p>Answer a few questions and discover your tarot personality, strengths and shadows.</p></div>
+    <div class="card"><div class="ic">🏠</div><h3>Yohe's Hut</h3><p>Chat with Yohe, a friendly virtual companion, whenever you need a little company.</p></div>
+    <div class="card"><div class="ic">🎨</div><h3>Personalize</h3><p>Unlock card skins and backs with stardust to make every draw your own.</p></div>
+    <div class="card"><div class="ic">🔒</div><h3>Private by Design</h3><p>Your data stays on your device. No personal information collected.</p></div>
+  </section>
+
+  <footer>
+    <p>© 2026 Yohe Aura · 云晞心流 · All readings are for entertainment &amp; self-reflection only.</p>
+    <p><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+  </footer>
+</body>
+</html>
