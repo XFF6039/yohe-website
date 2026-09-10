@@ -26,9 +26,22 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       background-attachment: fixed;
+      overflow-x: hidden;
+    }
+    /* 视差背景光晕层 */
+    .parallax-bg {
+      position: fixed;
+      inset: -20%;
+      z-index: -1;
+      pointer-events: none;
+      will-change: transform;
+      background:
+        radial-gradient(520px 520px at 82% 18%, rgba(79,107,224,0.10), transparent 62%),
+        radial-gradient(460px 460px at 14% 40%, rgba(98,206,234,0.09), transparent 60%),
+        radial-gradient(560px 560px at 60% 92%, rgba(79,107,224,0.08), transparent 62%);
     }
     .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-    header { padding: 48px 0 24px; text-align: center; }
+    header { padding: 48px 0 24px; text-align: center; will-change: transform; }
     .logo {
       width: 96px; height: 96px; margin: 0 auto 20px;
       border-radius: 24px;
@@ -42,7 +55,7 @@
     }
     .sub { color: var(--muted); font-size: 18px; margin-top: 8px; }
     .sub .cn { color: var(--ink); }
-    .hero { text-align: center; padding: 24px 0 40px; }
+    .hero { text-align: center; padding: 24px 0 40px; will-change: transform; }
     .hero p { max-width: 620px; margin: 0 auto 28px; color: #4a4052; font-size: 17px; }
     .badge {
       display: inline-block; padding: 12px 30px; border-radius: 10px;
@@ -59,6 +72,14 @@
       background: linear-gradient(140deg, #3E7DE0 0%, #3367D6 55%, #2B5EC7 100%);
       border-radius: 18px; padding: 24px;
       box-shadow: 0 10px 26px rgba(43,94,199,0.30);
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+      will-change: transform, opacity;
+    }
+    .card.revealed { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .card { opacity: 1; transform: none; transition: none; }
     }
     .card .ic { font-size: 28px; }
     .card h3 { margin: 10px 0 6px; font-size: 19px; color: #fff; }
@@ -69,6 +90,7 @@
   </style>
 </head>
 <body>
+  <div class="parallax-bg"></div>
   <header>
     <div class="logo"><img src="icon-180.png" alt="Yohe Aura logo" /></div>
     <h1>Yohe Aura</h1>
@@ -100,5 +122,45 @@
     <p>© 2026 Yohe Aura · All readings are for entertainment &amp; self-reflection only.</p>
     <p><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
   </footer>
+
+  <script>
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) return;
+
+      var bg = document.querySelector('.parallax-bg');
+      var header = document.querySelector('header');
+      var hero = document.querySelector('.hero');
+      var cards = document.querySelectorAll('.card');
+
+      // 滚动视差：背景慢速移动，header/hero 轻微上移
+      var ticking = false;
+      function onScroll() {
+        var y = window.scrollY;
+        if (bg) bg.style.transform = 'translateY(' + (y * 0.25) + 'px)';
+        if (header) header.style.transform = 'translateY(' + (y * -0.12) + 'px)';
+        if (hero) hero.style.transform = 'translateY(' + (y * -0.06) + 'px)';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
+      }, { passive: true });
+
+      // 卡片进入视口时错落浮现
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('revealed');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        cards.forEach(function (c) { io.observe(c); });
+      } else {
+        cards.forEach(function (c) { c.classList.add('revealed'); });
+      }
+    })();
+  </script>
 </body>
 </html>
